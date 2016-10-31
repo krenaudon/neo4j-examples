@@ -1,0 +1,14 @@
+
+
+MATCH (n)
+OPTIONAL MATCH (n)-[r]-()
+DELETE n,r;
+
+CREATE (ReqRoot:Requirement {name:'Root Requirement',description:''})
+CREATE (Requirement1:Requirement {name:'A first requirement',description:''})
+CREATE (Requirement1)-[:IS_CHILD]->(ReqRoot)
+
+CREATE (Deliv1:Deliverable {name:'Delivrable1',description:''})
+CREATE (Requirement1)-[:NEEDS]->(Deliv1)
+
+MATCH (n) OPTIONAL MATCH (n)-[r]-() return n,r;
